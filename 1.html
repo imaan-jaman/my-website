@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Prayer Times</title>
+    <style>
+        body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('r.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative; /* Make sure body is positioned relatively */
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Adjust opacity as needed */
+    z-index: -1; /* Place the overlay behind other content */
+}
+
+.container {
+            background-color: #333;
+            border-radius: 10px;
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        @media only screen and (max-width: 600px) {
+    .container {
+        max-width: 80%; /* Adjust as needed */
+    }
+}
+
+
+
+
+/* Rest of your CSS styles here */
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #3a794c;
+            text-align: center;
+        }
+
+        select,
+        button {
+            padding: 10px 20px;
+            margin: 10px 0;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #555;
+            color: #fff;
+            transition: background-color 0.3s, color 0.3s;
+            display: block;
+            width: 100%;
+        }
+
+        select:hover,
+        button:hover {
+            background-color: #24bb4f;
+            color: #000;
+        }
+
+        button {
+            background-color: #24bb4f;
+            color: #000;
+            font-weight: bold;
+        }
+
+        button:active {
+            transform: translateY(2px);
+        }
+
+        #prayerTimes {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        .dark-mode {
+            background-color: #222;
+            color: #fff;
+        }
+
+        .light-mode {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .toggle-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .toggle-label {
+            margin-right: 10px;
+            font-size: 16px;
+            color: #fff;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.toggle-slider {
+            background-color: #24bb4f;
+        }
+
+        input:checked+.toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Rounded sliders */
+        .toggle-slider.round {
+            border-radius: 34px;
+        }
+
+        .toggle-slider.round:before {
+            border-radius: 50%;
+        }
+        h1{
+            color: #24bb4f;
+        }
+        
+    </style>
+</head>
+
+<body class="dark-mode">
+    <div class="container">
+        <h1>Islamic Prayer Times</h1>
+        <label for="location">Select Your Location:</label>
+        <select id="location">
+            <option value="makkah">Makkah, Saudi Arabia</option>
+            <option value="madinah">Madinah, Saudi Arabia</option>
+            <option value="istanbul">Istanbul, Turkey</option>
+            <option value="karachi">Karachi, Pakistan</option>
+            <option value="lahore">Lahore, Pakistan</option>
+            <option value="jakarta">Jakarta, Indonesia</option>
+            <option value="cairo">Cairo, Egypt</option>
+            <option value="dhaka">Dhaka, Bangladesh</option>
+            <option value="kuala_lumpur">Kuala Lumpur, Malaysia</option>
+            <option value="tehran">Tehran, Iran</option>
+            <option value="baghdad">Baghdad, Iraq</option>
+            <option value="riyadh">Riyadh, Saudi Arabia</option>
+            <option value="casablanca">Casablanca, Morocco</option>
+            <option value="kano">Kano, Nigeria</option>
+            <option value="dubai">Dubai, United Arab Emirates</option>
+            <option value="alger">Algiers, Algeria</option>
+            <option value="alexandria">Alexandria, Egypt</option>
+            <option value="abuja">Abuja, Nigeria</option>
+            <option value="sanaa">Sana'a, Yemen</option>
+            <option value="peshawar">Peshawar, Pakistan</option>
+            <option value="tripoli">Tripoli, Libya</option>
+            <option value="muscat">Muscat, Oman</option>
+            <option value="sulaymaniyah">Sulaymaniyah, Iraq</option>
+            <option value="beirut">Beirut, Lebanon</option>
+            <option value="amman">Amman, Jordan</option>
+            <option value="tunis">Tunis, Tunisia</option>
+            <option value="doha">Doha, Qatar</option>
+            <option value="mogadishu">Mogadishu, Somalia</option>
+            <option value="rabat">Rabat, Morocco</option>
+            <option value="kabul">Kabul, Afghanistan</option>
+            <option value="tashkent">Tashkent, Uzbekistan</option>
+            <option value="khartoum">Khartoum, Sudan</option>
+            <option value="kathmandu">Kathmandu, Nepal</option>
+            <option value="baku">Baku, Azerbaijan</option>
+            <option value="kuwait_city">Kuwait City, Kuwait</option>
+            <option value="nairobi">Nairobi, Kenya</option>
+            <option value="dushanbe">Dushanbe, Tajikistan</option>
+            <option value="ankara">Ankara, Turkey</option>
+            <option value="damascus">Damascus, Syria</option>
+            <option value="algiers">Algiers, Algeria</option>
+            <option value="khartoum">Khartoum, Sudan</option>
+            <option value="yaounde">Yaoundé, Cameroon</option>
+            <option value="dakar">Dakar, Senegal</option>
+            <option value="tripoli">Tripoli, Libya</option>
+            <option value="conakry">Conakry, Guinea</option>
+            <option value="male">Malé, Maldives</option>
+            <option value="serekunda">Serekunda, Gambia</option>
+            <option value="lusaka">Lusaka, Zambia</option>
+            <option value="freetown">Freetown, Sierra Leone</option>
+        </select>
+        <button onclick="getPrayerTimes()">Get Prayer Times</button>
+        <div id="prayerTimes"></div>
+       
+    </div>
+
+    <script>
+        function getPrayerTimes() {
+            var location = document.getElementById('location').value;
+            var prayerTimes;
+            switch (location) {
+                case 'makkah':
+                    prayerTimes = "Prayer times for Makkah:\nFajr - 4:30 AM\nDhuhr - 12:15 PM\nAsr - 3:30 PM\nMaghrib - 6:00 PM\nIsha - 7:45 PM";
+                    break;
+                case 'madinah':
+                    prayerTimes = "Prayer times for Madinah:\nFajr - 4:45 AM\nDhuhr - 12:30 PM\nAsr - 3:45 PM\nMaghrib - 6:15 PM\nIsha - 8:00 PM";
+                    break;
+                case 'istanbul':
+                    prayerTimes = "Prayer times for Istanbul:\nFajr - 5:30 AM\nDhuhr - 12:45 PM\nAsr - 4:00 PM\nMaghrib - 6:30 PM\nIsha - 8:15 PM";
+                    break;
+                case 'karachi':
+                    prayerTimes = "Prayer times for Karachi:\nFajr - 5:00 AM\nDhuhr - 12:15 PM\nAsr - 3:30 PM\nMaghrib - 6:00 PM\nIsha - 7:45 PM";
+                    break;
+                case 'lahore':
+                    prayerTimes = "Prayer times for Lahore:\nFajr - 5:15 AM\nDhuhr - 12:30 PM\nAsr - 3:45 PM\nMaghrib - 6:15 PM\nIsha - 8:00 PM";
+                    break;
+                case 'jakarta':
+                    prayerTimes = "Prayer times for Jakarta:\nFajr - 4:30 AM\nDhuhr - 11:45 AM\nAsr - 3:00 PM\nMaghrib - 5:30 PM\nIsha - 7:15 PM";
+                    break;
+                case 'cairo':
+                    prayerTimes = "Prayer times for Cairo:\nFajr - 4:45 AM\nDhuhr - 12:00 PM\nAsr - 3:15 PM\nMaghrib - 5:45 PM\nIsha - 7:30 PM";
+                    break;
+                case 'dhaka':
+                    prayerTimes = "Prayer times for Dhaka:\nFajr - 4:45 AM\nDhuhr - 12:00 PM\nAsr - 3:15 PM\nMaghrib - 5:45 PM\nIsha - 7:30 PM";
+                    break;
+                case 'kuala_lumpur':
+                    prayerTimes = "Prayer times for Kuala Lumpur:\nFajr - 5:45 AM\nDhuhr - 1:00 PM\nAsr - 4:15 PM\nMaghrib - 6:45 PM\nIsha - 8:30 PM";
+                    break;
+                case 'tehran':
+                    prayerTimes = "Prayer times for Tehran:\nFajr - 5:00 AM\nDhuhr - 12:15 PM\nAsr - 3:30 PM\nMaghrib - 6:00 PM\nIsha - 7:45 PM";
+                    break;
+                case 'baghdad':
+                    prayerTimes = "Prayer times for Baghdad:\nFajr - 4:45 AM\nDhuhr - 12:00 PM\nAsr - 3:15 PM\nMaghrib - 5:45 PM\nIsha - 7:30 PM";
+                    break;
+                case 'riyadh':
+                    prayerTimes = "Prayer times for Riyadh:\nFajr - 5:15 AM\nDhuhr - 12:30 PM\nAsr - 3:45 PM\nMaghrib - 6:15 PM\nIsha - 8:00 PM";
+                    break;
+                case 'casablanca':
+                    prayerTimes = "Prayer times for Casablanca:\nFajr - 5:30 AM\nDhuhr - 12:45 PM\nAsr - 4:00 PM\nMaghrib - 6:30 PM\nIsha - 8:15 PM";
+                    break;
+                case 'kano':
+                    prayerTimes = "Prayer times for Kano:\nFajr - 5:15 AM\nDhuhr - 12:30 PM\nAsr - 3:45 PM\nMaghrib - 6:15 PM\nIsha - 8:00 PM";
+                    break;
+                case 'dubai':
+                    prayerTimes = "Prayer times for Dubai:\nFajr - 5:00 AM\nDhuhr - 12:15 PM\nAsr - 3:30 PM\nMaghrib - 6:00 PM\nIsha - 7:45 PM";
+                    break;
+                case 'alger':
+                    prayerTimes = "Prayer times for Algiers:\nFajr - 5:30 AM\nDhuhr - 12:45 PM\nAsr - 4:00 PM\nMaghrib - 6:30 PM\nIsha - 8:15 PM";
+                    break;
+                case 'alexandria':
+                    prayerTimes = "Prayer times for Alexandria:\nFajr - 4:45 AM\nDhuhr - 12:00 PM\nAsr - 3:15 PM\nMaghrib - 5:45 PM\nIsha - 7:30 PM";
+                    break;
+                case 'abuja':
+                    prayerTimes = "Prayer times for Abuja:\nFajr - 5:15 AM\nDhuhr - 12:30 PM\nAsr - 3:45 PM\nMaghrib - 6:15 PM\nIsha - 8:00 PM";
+                    break;
+                case 'sanaa':
+                    prayerTimes = "Prayer times for Sana'a:\nFajr - 4:45 AM\nDhuhr - 12:00 PM\nAsr - 3:15 PM\nMaghrib - 5:45 PM\nIsha - 7:30 PM";
+                    break;
+                case 'peshawar':
+                    prayerTimes = "Prayer times for Peshawar:\nFajr - 5:00 AM\nDhuhr - 12:15 PM\nAsr - 3:30 PM\nMaghrib - 6:00 PM\nIsha - 7:45 PM";
+                    break;
+                case 'tripoli':
+                    prayerTimes = "Prayer times for Tripoli:\nFajr - 4:45 AM\nDhuhr - 12:00 PM\nAsr - 3:15 PM\nMaghrib - 5:45 PM\nIsha - 7:30 PM";
+                    break;
+                case 'muscat':
+                    prayerTimes = "Prayer times for Muscat:\nFajr - 5:00 AM\nDhuhr - 12:15 PM\nAsr - 3:30 PM\nMaghrib - 6:00 PM\nIsha - 7:45 PM";
+                    break;
+                case 'sulaymaniyah':
+                    prayerTimes = "Prayer times for Sulaymaniyah:\nFajr - 4:45 AM\nDhuhr - 12:00 PM\nAsr - 3:15 PM\nMaghrib - 5:45 PM\nIsha - 7:30 PM";
+                    break;
+                case 'beirut':
+                    prayerTimes = "Prayer times for Beirut:\nFajr - 4:45 AM\nDhuhr - 12:00 PM\nAsr - 3:15 PM\nMaghrib - 5:45 PM\nIsha - 7:30 PM";
+                    break;
+                case 'amman':
+                    prayerTimes = "Prayer times for Amman:\nFajr - 5:00 AM\nDhuhr - 12:15 PM\nAsr - 3:30 PM\nMaghrib - 6:00 PM\nIsha - 7:45 PM";
+                    break;
+                case 'tunis':
+                    prayerTimes = "Prayer times for Tunis:\nFajr - 5:00 AM\nDhuhr - 12:15 PM\nAsr - 3:30 PM\nMaghrib - 6:00 PM\nIsha - 7:45 PM";
+                    break;
+                case 'doha':
+                    prayerTimes = "Prayer times for Doha:\nFajr - 5:00 AM\nDhuhr - 12:15 PM\nAsr - 3:30 PM\nMaghrib - 6:00 PM\nIsha - 7:45 PM";
+                    break;
+                case 'mogadishu':
+                    prayerTimes = "Prayer times for Mogadishu:\nFajr - 4:30 AM\nDhuhr - 11:45 AM\nAsr - 3:00 PM\nMaghrib - 5:30 PM\nIsha - 7:15 PM";
+                    break;
+                case 'rabat':
+                    prayerTimes = "Prayer times for Rabat:\nFajr - 5:30 AM\nDhuhr - 12:45 PM\nAsr - 4:00 PM\nMaghrib - 6:30 PM\nIsha - 8:15 PM";
+                    break;
+                case 'kabul':
+                    prayerTimes = "Prayer times for Kabul:\nFajr - 4:45 AM\nDhuhr - 12:00 PM\nAsr - 3:15 PM\nMaghrib - 5:45 PM\nIsha - 7:30 PM";
+                    break;
+                case 'tashkent':
+                    prayerTimes = "Prayer times for Tashkent:\nFajr - 5:15 AM\nDhuhr - 12:30 PM\nAsr - 3:45 PM\nMaghrib - 6:15 PM\nIsha - 8:00 PM";
+                    break;
+                case 'khartoum':
+                    prayerTimes = "Prayer times for Khartoum:\nFajr - 5:15 AM\nDhuhr - 12:30 PM\nAsr - 3:45 PM\nMaghrib - 6:15 PM\nIsha - 8:00 PM";
+                    break;
+                case 'kathmandu':
+                    prayerTimes = "Prayer times for Kathmandu:\nFajr - 4:30 AM\nDhuhr - 11:45 AM\nAsr - 3:00 PM\nMaghrib - 5:30 PM\nIsha - 7:15 PM";
+                    break;
+                case 'baku':
+                    prayerTimes = "Prayer times for Baku:\nFajr - 5:15 AM\nDhuhr - 12:30 PM\nAsr - 3:45 PM\nMaghrib - 6:15 PM\nIsha - 8:00 PM";
+                    break;
+                case 'kuwait_city':
+                    prayerTimes = "Prayer times for Kuwait City:\nFajr - 5:15 AM\nDhuhr - 12:30 PM\nAsr - 3:45 PM\nMaghrib - 6:15 PM\nIsha - 8:00 PM";
+                    break;
+                case 'nairobi':
+                    prayerTimes = "Prayer times for Nairobi:\nFajr - 5:30 AM\nDhuhr - 12:45 PM\nAsr - 4:00 PM\nMaghrib - 6:30 PM\nIsha - 8:15 PM";
+                    break;
+                case 'dushanbe':
+                    prayerTimes = "Prayer times for Dushanbe:\nFajr - 5:15 AM\nDhuhr - 12:30 PM\nAsr - 3:45 PM\nMaghrib - 6:15 PM\nIsha - 8:00 PM";
+                    break;
+                case 'ankara':
+                    prayerTimes = "Prayer times for Ankara:\nFajr - 5:45 AM\nDhuhr - 1:00 PM\nAsr - 4:15 PM\nMaghrib - 6:45 PM\nIsha - 8:30 PM";
+                    break;
+                case 'damascus':
+                    prayerTimes = "Prayer times for Damascus:\nFajr - 4:45 AM\nDhuhr - 12:00 PM\nAsr - 3:15 PM\nMaghrib - 5:45 PM\nIsha - 7:30 PM";
+                    break;
+                case 'algiers':
+                    prayerTimes = "Prayer times for Algiers:\nFajr - 5:00 AM\nDhuhr - 12:15 PM\nAsr - 3:30 PM\nMaghrib - 6:00 PM\nIsha - 7:45 PM";
+                    break;
+                case 'khartoum':
+                    prayerTimes = "Prayer times for Khartoum:\nFajr - 5:30 AM\nDhuhr - 12:45 PM\nAsr - 4:00 PM\nMaghrib - 6:30 PM\nIsha - 8:15 PM";
+                    break;
+                case 'yaounde':
+                    prayerTimes = "Prayer times for Yaoundé:\nFajr - 5:15 AM\nDhuhr - 12:30 PM\nAsr - 3:45 PM\nMaghrib - 6:15 PM\nIsha - 8:00 PM";
+                    break;
+                case 'dakar':
+                    prayerTimes = "Prayer times for Dakar:\nFajr - 5:00 AM\nDhuhr - 12:15 PM\nAsr - 3:30 PM\nMaghrib - 6:00 PM\nIsha - 7:45 PM";
+                    break;
+                case 'tripoli':
+                    prayerTimes = "Prayer times for Tripoli:\nFajr - 4:45 AM\nDhuhr - 12:00 PM\nAsr - 3:15 PM\nMaghrib - 5:45 PM\nIsha - 7:30 PM";
+                    break;
+                case 'conakry':
+                    prayerTimes = "Prayer times for Conakry:\nFajr - 5:15 AM\nDhuhr - 12:30 PM\nAsr - 3:45 PM\nMaghrib - 6:15 PM\nIsha - 8:00 PM";
+                    break;
+                case 'male':
+                    prayerTimes = "Prayer times for Malé:\nFajr - 5:30 AM\nDhuhr - 12:45 PM\nAsr - 4:00 PM\nMaghrib - 6:30 PM\nIsha - 8:15 PM";
+                    break;
+                case 'serekunda':
+                    prayerTimes = "Prayer times for Serekunda:\nFajr - 5:15 AM\nDhuhr - 12:30 PM\nAsr - 3:45 PM\nMaghrib - 6:15 PM\nIsha - 8:00 PM";
+                    break;
+                case 'lusaka':
+                    prayerTimes = "Prayer times for Lusaka:\nFajr - 5:30 AM\nDhuhr - 12:45 PM\nAsr - 4:00 PM\nMaghrib - 6:30 PM\nIsha - 8:15 PM";
+                    break;
+                case 'freetown':
+                    prayerTimes = "Prayer times for Freetown:\nFajr - 5:45 AM\nDhuhr - 1:00 PM\nAsr - 4:15 PM\nMaghrib - 6:45 PM\nIsha - 8:30 PM";
+                    break;
+                default:
+                    prayerTimes = "Prayer times not available for this location.";
+            }
+            document.getElementById('prayerTimes').innerText = prayerTimes;
+        }
+
+        
+    </script>
+</body>
+
+</html>
